@@ -155,26 +155,32 @@ export default function createConfig(
       }),
     },
 
-    devServer: {
-      port: 4321,
-      host: '0.0.0.0',
-      allowedHosts: 'all',
-      hot: false,
-      static: [
-        {
-          directory: path.resolve(__dirname, 'public'),
-        },
-        {
-          directory: path.resolve(__dirname, 'src/lib/rlottie'),
-        },
-      ],
-      devMiddleware: {
-        stats: 'minimal',
-      },
-      headers: {
-        'Content-Security-Policy': CSP,
-      },
+  // start dev server code 👇👇👇
+devServer: {
+  port: 4321,
+  host: '0.0.0.0',
+  allowedHosts: 'all',
+  hot: false,
+  static: [
+    {
+      directory: path.resolve(__dirname, 'public'),
     },
+    {
+      directory: path.resolve(__dirname, 'src/lib/rlottie'),
+    },
+  ],
+  devMiddleware: {
+    stats: 'minimal',
+  },
+  headers: {
+    'Content-Security-Policy': CSP,
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+    'Access-Control-Allow-Headers':
+      'X-App-Env, X-App-Version, X-Requested-With, Content-Type, Authorization, Origin, Accept',
+  },
+},
+// end of dev server code 👆👆👆
 
     watchOptions: { ignored: defaultI18nFilename },
 
