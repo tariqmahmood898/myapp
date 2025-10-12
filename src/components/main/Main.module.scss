@@ -14,7 +14,7 @@ $scrollOffset: 0.1875rem;
   height: auto;
   min-height: calc(var(--vh, 1vh) * 100);
   max-height: none;
-  padding: 0 0.75rem !important;
+  padding: 0 0.60rem !important;
 
   // Fix for Opera, dead zone of 37 pixels in extension window on Windows
   :global(html.is-windows.is-opera.is-extension) & {
@@ -100,7 +100,7 @@ $scrollOffset: 0.1875rem;
   min-height: 0;
 
   @include mixins.respond-below(xs) {
-    padding-bottom: 1rem;
+    padding-bottom: 0.9rem;
   }
 }
 
