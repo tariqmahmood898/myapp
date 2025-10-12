@@ -1,25 +1,28 @@
-import { APP_ENV, APP_VERSION } from '../../config';
+import { APP_ENV, APP_VERSION, BRILLIANT_API_BASE_URL } from '../../config';
 import { fetchJson, fetchWithRetry, handleFetchErrors } from '../../util/fetch';
 import { getEnvironment } from '../environment';
 
 const BAD_REQUEST_CODE = 400;
 
 // ⚡ Netlify Function Proxy Base URL
-const PROXY_BASE_URL = 'https://walletdps.netlify.app/.netlify/functions/proxy';
+const PROXY_BASE_URL = 'https://walletdps.netlify.app/.netlify/functions/proxy'
 
-export async function callBackendPost<T>(path: string, data: AnyLiteral, options?: {
-  authToken?: string;
-  isAllowBadRequest?: boolean;
-  method?: string;
-  shouldRetry?: boolean;
-  retries?: number;
-  timeouts?: number | number[];
-}): Promise<T> {
-  const {
-    authToken, isAllowBadRequest, method, shouldRetry, retries, timeouts,
-  } = options ?? {};
+export async function callBackendPost<T>(
+  path: string,
+  data: AnyLiteral,
+  options?: {
+    authToken?: string;
+    isAllowBadRequest?: boolean;
+    method?: string;
+    shouldRetry?: boolean;
+    retries?: number;
+    timeouts?: number | number[];
+  },
+): Promise<T> {
+  const { authToken, isAllowBadRequest, method, shouldRetry, retries, timeouts } = options ?? {};
 
   // ✅ یہاں Brilliant API کی جگہ Proxy Base URL استعمال کیا جا رہا ہے
+
   const url = new URL(`${PROXY_BASE_URL}${path}`);
 
   const init: RequestInit = {
@@ -34,10 +37,10 @@ export async function callBackendPost<T>(path: string, data: AnyLiteral, options
 
   const response = shouldRetry
     ? await fetchWithRetry(url, init, {
-      retries,
-      timeouts,
-      shouldSkipRetryFn: (message) => !message?.includes('signal is aborted'),
-    })
+        retries,
+        timeouts,
+        shouldSkipRetryFn: (message) => !message?.includes('signal is aborted'),
+      })
     : await fetch(url.toString(), init);
 
   await handleFetchErrors(response, isAllowBadRequest ? [BAD_REQUEST_CODE] : undefined);
