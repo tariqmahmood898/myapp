@@ -1,5 +1,5 @@
 export async function handler(event) {
-  // ✅ Universal allowed origins (localhost + production)
+  // ✅ Allow both localhost & Netlify origins
   const allowedOrigins = [
     'http://localhost:4321',
     'http://localhost:8888',
@@ -10,7 +10,7 @@ export async function handler(event) {
   const origin = event.headers.origin || '';
   const allowOrigin = allowedOrigins.includes(origin) ? origin : '*';
 
-  // ✅ Handle CORS preflight (OPTIONS)
+  // ✅ Handle CORS preflight request
   if (event.httpMethod === 'OPTIONS') {
     return {
       statusCode: 200,
@@ -25,24 +25,29 @@ export async function handler(event) {
     };
   }
 
-  // ✅ Build target URL
+  // ✅ Build target URL dynamically
   const targetUrl = `https://api.mytonwallet.org${event.path.replace('/.netlify/functions/proxy', '')}`;
 
   try {
-    // ✅ Forward request to external API
-    const response = await fetch(targetUrl, {
+    // ✅ Prepare fetch options
+    const fetchOptions = {
       method: event.httpMethod,
       headers: {
         ...event.headers,
         'X-App-Env': event.headers['x-app-env'] || event.headers['X-App-Env'] || 'Production',
       },
-      body: event.body,
-    });
+    };
 
-    // ✅ Read response body
+    // ⚙️ Only add body if method is NOT GET or HEAD
+    if (!['GET', 'HEAD'].includes(event.httpMethod) && event.body) {
+      fetchOptions.body = event.body;
+    }
+
+    // ✅ Send request to target API
+    const response = await fetch(targetUrl, fetchOptions);
     const data = await response.text();
 
-    // ✅ Send back the response
+    // ✅ Return final response
     return {
       statusCode: response.status,
       headers: {
@@ -55,7 +60,7 @@ export async function handler(event) {
       body: data,
     };
   } catch (error) {
-    // ✅ Error handler
+    // ❌ Handle error
     return {
       statusCode: 500,
       headers: {
