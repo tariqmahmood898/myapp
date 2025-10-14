@@ -1,12 +1,11 @@
 export async function handler(event) {
-  // ✅ Allowed origins (localhost + Netlify)
+  // ✅ Allowed origins domain list (localhost + Netlify)
   const allowedOrigins = [
     'http://localhost:4321',
     'http://127.0.0.1:4321',
     'https://dpsmult.netlify.app',
     'http://localhost:8888',
     'https://walletdps.netlify.app',
-    
     'https://walletdps.netlify.com',
     'https://dpsmult.netlify.app',
 
