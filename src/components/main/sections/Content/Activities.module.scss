@@ -65,7 +65,7 @@
 .date {
   --color-dot: var(--color-activity-gray-text);
 
-  width: max-content;
+  width: 100;
   margin: 0.25rem auto;
   padding: 0.25rem 0.5625rem;
   border-radius: var(--border-radius-default);
@@ -75,7 +75,7 @@
   line-height: 1.125rem;
   color: var(--color-activity-gray-text);
 
-  background-color: var(--color-activity-gray-background);
+  background-color:  var(--color-activity-gray-background);
 
   @include mixins.is-mobile() {
     font-size: 0.8125rem;
