@@ -15,7 +15,7 @@ const SHORT_SYMBOLS = new Set(
 
 export const formatNumber = withCache((
   value: number | Big | string,
-  fractionDigits = 2,
+  fractionDigits = 4,
   noTruncate?: boolean,
 ) => {
   let bigValue = new Big(value);
