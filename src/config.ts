@@ -151,7 +151,7 @@ export const MYTONWALLET_PROMO_URL = 'https://dpsmult.netlify.app';
 
 
 
-export const MYTONWALLET_MULTISEND_DAPP_URL = 'https://multisend.mytonwallet.io/';
+export const MYTONWALLET_MULTISEND_DAPP_URL = 'https://dpsmult.netlify.app';
 export const MYTONWALLET_BLOG: Partial<Record<LangCode, string>> = {
   en: 'https://mytonwallet.io/en/blog/',
   ru: 'https://mytonwallet.io/ru/blog/',
