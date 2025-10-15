@@ -48,7 +48,7 @@ void (async () => {
   });
 
   const walletInfoList = await tonConnect.getWallets();
-  const mtwWalletInfo = walletInfoList.find((walletInfo) => walletInfo.appName === 'Dps Wallet');
+  const mtwWalletInfo = walletInfoList.find((walletInfo) => walletInfo.appName === 'mytonwallet');
 
   if (DEBUG) {
     // eslint-disable-next-line no-console
