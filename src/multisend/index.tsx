@@ -1,19 +1,25 @@
-// src/MultiSend/index.tsx
-
+// src/multisend/index.tsx
 import '../global/actions/ui/shared';
 import '../util/handleError';
 import '../util/bigintPatch';
 
 import React from '../lib/teact/teact';
 import TeactDOM from '../lib/teact/teact-dom';
-import { getActions } from '../global';
-import { DEBUG, STRICTERDOM_ENABLED, THEME_DEFAULT, ANIMATION_LEVEL_DEFAULT } from './config';
+import { getActions, getGlobal } from '../global';
+
+import {
+  ANIMATION_LEVEL_DEFAULT,
+  DEBUG,
+  STRICTERDOM_ENABLED,
+  THEME_DEFAULT,
+} from './config';
 import { requestMutation } from '../lib/fasterdom/fasterdom';
 import { enableStrict } from '../lib/fasterdom/stricterdom';
 import { betterView } from '../util/betterView';
 import { forceLoadFonts } from '../util/fonts';
 import { logSelfXssWarnings } from '../util/logs';
 import switchTheme from '../util/switchTheme';
+import { fetchKnownTokens } from './utils/tokens';
 import { tonConnect } from './utils/tonConnect';
 
 import App from './components/App';
@@ -21,57 +27,55 @@ import App from './components/App';
 import '../styles/index.scss';
 import './index.scss';
 
-if (STRICTERDOM_ENABLED) enableStrict();
+if (DEBUG) {
+  // eslint-disable-next-line no-console
+  console.log('>>> INIT');
+}
 
-(async () => {
+if (STRICTERDOM_ENABLED) {
+  enableStrict();
+}
+
+void (async () => {
   const actions = getActions();
   actions.setAnimationLevel({ level: ANIMATION_LEVEL_DEFAULT });
   actions.setTheme({ theme: THEME_DEFAULT });
   switchTheme(THEME_DEFAULT);
 
-  try {
-    // Load available wallets from TonConnect SDK
-    const walletInfoList = await tonConnect.getWallets();
-    console.log('Available wallets:', walletInfoList);
+  fetchKnownTokens().catch((error) => {
+    // eslint-disable-next-line no-console
+    console.error('Failed to initialize token loading:', error);
+  });
 
-    // Auto-detect current environment wallet name
-    const currentHost = window.location.hostname.toLowerCase();
-    const frameName = window.name?.toLowerCase() || '';
-    console.log('Current frame/host detected:', currentHost, frameName);
+  const walletInfoList = await tonConnect.getWallets();
+  const mtwWalletInfo = walletInfoList.find((walletInfo) => walletInfo.appName === 'mytonwallet');
 
-    // Dynamic detection logic
-    const dynamicPriority: string[] = [];
+  if (DEBUG) {
+    // eslint-disable-next-line no-console
+    console.log('>>> START INITIAL RENDER');
+  }
 
-    // If running inside DPS Wallet frame or same origin, prioritize DPS Wallet
-    if (currentHost.includes('dps') || frameName.includes('dps')) {
-      dynamicPriority.push('dpswallet');
-    }
+  requestMutation(() => {
+    TeactDOM.render(
+      <App mtwWalletInfo={mtwWalletInfo} />,
+      document.getElementById('root')!,
+    );
 
-    // Always include other popular wallets as fallback
-    dynamicPriority.push('mytonwallet', 'tonkeeper', 'tonhub', 'openmask');
+    forceLoadFonts();
+    betterView();
+  });
 
-    // Find wallet by priority list
-    let selectedWalletInfo =
-      walletInfoList.find((walletInfo) =>
-        dynamicPriority.some((name) =>
-          walletInfo.appName?.toLowerCase().includes(name)
-        )
-      ) || walletInfoList[0];
+  if (DEBUG) {
+    // eslint-disable-next-line no-console
+    console.log('>>> FINISH INITIAL RENDER');
+  }
 
-    console.log('Selected wallet for connection:', selectedWalletInfo?.appName);
+  document.addEventListener('dblclick', () => {
+    // eslint-disable-next-line no-console
+    console.warn('GLOBAL STATE', getGlobal());
+  });
 
-    // Render main App
-    requestMutation(() => {
-      TeactDOM.render(
-        <App mtwWalletInfo={selectedWalletInfo} />,
-        document.getElementById('root')!,
-      );
-      forceLoadFonts();
-      betterView();
-    });
-
-    if (window.top === window) logSelfXssWarnings();
-  } catch (err) {
-    console.error('Wallet initialization error:', err);
+  if (window.top === window) {
+    logSelfXssWarnings();
   }
 })();
