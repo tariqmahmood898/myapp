@@ -14,9 +14,9 @@ import type { AutolockValueType, LangCode, LangItem, TokenPeriod } from './globa
 
 export const APP_ENV = process.env.APP_ENV;
 
-export const IS_CORE_WALLET = process.env.IS_CORE_WALLET === '1';
+//export const IS_CORE_WALLET = process.env.IS_CORE_WALLET === '1';
 
-//export const IS_CORE_WALLET = false;  // core wallet disable
+export const IS_CORE_WALLET = false;  // core wallet disable
 
 
 export const APP_NAME = 'Dps Wallet'; // single name constant
