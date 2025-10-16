@@ -1,8 +1,8 @@
 {
-  "name": "DPS MultiSend",
-  "url": "https://dpsmult.netlify.app",
-  "iconUrl": "https://dpsmult.netlify.app/logo.png",
-  "manifestVersion": "1.0.0"
+  "url": "https://walletdps.netlify.app",
+  "name": "DPS Wallet",
+  "iconUrl": "https://walletdps.netlify.app/icon.png",
+  "termsOfUseUrl": "https://walletdps.netlify.app/terms",
+  "privacyPolicyUrl": "https://walletdps.netlify.app/privacy"
 }
-
 
