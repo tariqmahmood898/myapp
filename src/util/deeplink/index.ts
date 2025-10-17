@@ -100,6 +100,7 @@ async function processTonDeeplink(url: string): Promise<boolean> {
     return false;
   }
 
+  // Trying to open the transfer modal from a widget using a deeplink
   if (url === 'ton://transfer') {
     actions.startTransfer({
       isPortrait: getIsPortrait(),
@@ -131,6 +132,12 @@ async function processTonDeeplink(url: string): Promise<boolean> {
   return true;
 }
 
+/**
+ * Parses a TON deeplink and checks whether the transfer can be initiated.
+ * Returns `undefined` if the URL is not a TON deeplink.
+ * If there is `error` in the result, there is a problem with the deeplink (the string is to translate via `lang`).
+ * Otherwise, returned the parsed transfer parameters.
+ */
 export function parseTonDeeplink(url: string, global: GlobalState) {
   const params = rawParseTonDeeplink(url);
   if (!params) return undefined;
@@ -163,6 +170,7 @@ export function parseTonDeeplink(url: string, global: GlobalState) {
     stateInit,
   };
 
+  // Check if both text and bin parameters are provided (mutually exclusive)
   if (comment && binPayload) {
     transferParams.error = '$transfer_text_and_bin_exclusive';
   }
@@ -208,6 +216,7 @@ function rawParseTonDeeplink(value?: string) {
   }
 
   try {
+    // In some browsers URL module may handle non-standard protocols incorrectly
     const adaptedDeeplink = value.replace(TON_PROTOCOL, 'https://');
     const url = new URL(adaptedDeeplink);
 
@@ -220,6 +229,7 @@ function rawParseTonDeeplink(value?: string) {
     const stateInit = getDeeplinkSearchParam(url, 'init') || getDeeplinkSearchParam(url, 'stateInit');
     const exp = getDeeplinkSearchParam(url, 'exp');
 
+    // Check for unsupported parameters
     const supportedParams = new Set(['amount', 'text', 'bin', 'jetton', 'nft', 'init', 'stateInit', 'exp']);
     const urlParams = Array.from(url.searchParams.keys());
     const hasUnsupportedParams = urlParams.some((param) => !supportedParams.has(param));
@@ -246,6 +256,7 @@ function isTonConnectDeeplink(url: string) {
     || omitProtocol(url).startsWith(omitProtocol(TONCONNECT_UNIVERSAL_URL));
 }
 
+// Returns `true` if the link has been processed, ideally resulting to a UI action
 async function processTonConnectDeeplink(url: string, isFromInAppBrowser = false): Promise<boolean> {
   if (!isTonConnectDeeplink(url)) {
     return false;
@@ -260,6 +271,7 @@ async function processTonConnectDeeplink(url: string, isFromInAppBrowser = false
     isFromInAppBrowser,
   });
 
+  // Workaround for long network connection initialization in the Capacitor version
   if (returnUrl === 'empty') {
     return true;
   }
@@ -280,6 +292,7 @@ export function isSelfDeeplink(url: string) {
     || SELF_UNIVERSAL_URLS.some((u) => url.startsWith(u));
 }
 
+// Returns `true` if the link has been processed, ideally resulting to a UI action
 export async function processSelfDeeplink(deeplink: string): Promise<boolean> {
   try {
     deeplink = convertSelfDeeplinkToSelfUrl(deeplink);
@@ -329,4 +342,141 @@ export async function processSelfDeeplink(deeplink: string): Promise<boolean> {
         return true;
       }
 
-      case DeeplinkCommand.BuyWithCrypto:
+      case DeeplinkCommand.BuyWithCrypto: {
+        if (isTestnet) {
+          actions.showError({ error: 'Swap is not supported in Testnet.' });
+        } else if (isLedger) {
+          actions.showError({ error: 'Swap is not yet supported by Ledger.' });
+        } else {
+          actions.startSwap({
+            tokenInSlug: searchParams.get('in') || DEFAULT_CEX_SWAP_SECOND_TOKEN_SLUG,
+            tokenOutSlug: searchParams.get('out') || TONCOIN.slug,
+            amountIn: toNumberOrEmptyString(searchParams.get('amount')) || '100',
+          });
+        }
+        return true;
+      }
+
+      case DeeplinkCommand.BuyWithCard: {
+        if (isTestnet) {
+          actions.showError({ error: 'Buying with card is not supported in Testnet.' });
+        } else {
+          actions.openOnRampWidgetModal({ chain: 'ton' });
+        }
+        return true;
+      }
+
+      case DeeplinkCommand.Stake: {
+        if (isTestnet) {
+          actions.showError({ error: 'Staking is not supported in Testnet.' });
+        } else {
+          actions.startStaking();
+        }
+        return true;
+      }
+
+      case DeeplinkCommand.Transfer: {
+        return await processTonDeeplink(convertSelfUrlToTonDeeplink(deeplink));
+      }
+
+      case DeeplinkCommand.Explore: {
+        actions.closeSettings();
+        actions.openExplore();
+        actions.setActiveContentTab({ tab: ContentTab.Explore });
+
+        const host = pathname.split('/').filter(Boolean)[1];
+        if (host) {
+          const matchingSite = getGlobal().exploreData?.sites.find(({ url }) => {
+            const siteHost = isTelegramUrl(url)
+              ? new URL(url).pathname.split('/').filter(Boolean)[0]
+              : new URL(url).hostname;
+
+            return siteHost === host;
+          });
+
+          if (matchingSite) {
+            void openUrl(matchingSite.url);
+          }
+        }
+
+        return true;
+      }
+
+      case DeeplinkCommand.Receive: {
+        if (getIsLandscape()) {
+          actions.setLandscapeActionsActiveTabIndex({ index: ActiveTab.Receive });
+        } else {
+          actions.openReceiveModal();
+        }
+        return true;
+      }
+    }
+  } catch (err) {
+    logDebugError('processSelfDeeplink', err);
+  }
+
+  return false;
+}
+
+/**
+ * Parses a deeplink and checks whether the transfer can be initiated.
+ * See `parseTonDeeplink` for information about the returned values.
+ */
+export function parseDeeplinkTransferParams(url: string, global: GlobalState) {
+  let tonDeeplink = url;
+
+  if (isSelfDeeplink(url)) {
+    try {
+      url = convertSelfDeeplinkToSelfUrl(url);
+      const { pathname } = new URL(url);
+      const command = pathname.split('/').find(Boolean);
+
+      if (command === DeeplinkCommand.Transfer) {
+        tonDeeplink = convertSelfUrlToTonDeeplink(url);
+      }
+    } catch (err) {
+      logDebugError('parseDeeplinkTransferParams', err);
+    }
+  }
+
+  return parseTonDeeplink(tonDeeplink, global);
+}
+
+function convertSelfDeeplinkToSelfUrl(deeplink: string) {
+  if (deeplink.startsWith(SELF_PROTOCOL)) {
+    return deeplink.replace(SELF_PROTOCOL, `${SELF_UNIVERSAL_URLS[0]}/`);
+  }
+  return deeplink;
+}
+
+function convertSelfUrlToTonDeeplink(deeplink: string) {
+  deeplink = forceHttpsProtocol(deeplink);
+
+  for (const selfUniversalUrl of SELF_UNIVERSAL_URLS) {
+    if (deeplink.startsWith(selfUniversalUrl)) {
+      return deeplink.replace(`${selfUniversalUrl}/`, TON_PROTOCOL);
+    }
+  }
+
+  return deeplink;
+}
+
+function omitProtocol(url: string) {
+  return url.replace(/^https?:\/\//, '');
+}
+
+function forceHttpsProtocol(url: string) {
+  return url.replace(/^http:\/\//, 'https://');
+}
+
+function toNumberOrEmptyString(input?: string | null) {
+  return String(Number(input) || '');
+}
+
+function replaceAllSpacesWithPlus(value: string) {
+  return value.replace(/ /g, '+');
+}
+
+function getDeeplinkSearchParam(url: URL, param: string) {
+  return url.searchParams.get(param) ?? undefined;
+}
