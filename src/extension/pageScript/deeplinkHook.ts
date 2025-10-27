@@ -1,3 +1,5 @@
+//     src/extension/pageScript/deeplinkHook.ts
+// Deeplink hook for intercepting clicks and window.open calls
 import { SELF_PROTOCOL, SELF_UNIVERSAL_URLS, TON_PROTOCOL } from '../../util/deeplink/constants';
 import { callApi } from '../../api/providers/extension/connectorForPageScript';
 

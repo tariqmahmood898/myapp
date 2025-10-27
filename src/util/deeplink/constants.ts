@@ -4,11 +4,11 @@ export const TONCONNECT_PROTOCOL = 'tc://';
 export const TONCONNECT_PROTOCOL_SELF = 'mytonwallet-tc://';
 
 
-export const SELF_PROTOCOL = 'DPS Wallet';
+export const SELF_PROTOCOL = 'DPSWallet';
 
 export const SELF_UNIVERSAL_URLS = [
   'https://walletdps.netlify.app',
-  'https://t.me/DPSwallet_bot?startapp='
+  'https://t.me/DPSwallet_bot?startapp'
 ];
 
 export const TONCONNECT_UNIVERSAL_URL = 'https://connect.mytonwallet.org';

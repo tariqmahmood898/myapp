@@ -19,7 +19,7 @@ import {
   DEBUG,
   ETHENA_STAKING_VAULT,
   LIQUID_JETTON,
-  LIQUID_POOL,
+  LIQUID_POOL,   //update our wallet id base64
   TON_TSUSDE,
   TON_USDE,
   TONCOIN,

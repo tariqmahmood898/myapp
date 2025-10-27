@@ -228,32 +228,28 @@ function App({
         renderCount={APP_STATE_RENDER_COUNT}
         shouldCleanup={!withBottomBar}
         className={styles.transitionContainer}
-        slideClassName={
-          buildClassName(styles.appSlide, withBottomBar && styles.appSlide_fastTransition, 'custom-scroll')
-        }
+        slideClassName={buildClassName(
+          styles.appSlide,
+          withBottomBar && styles.appSlide_fastTransition,
+          'custom-scroll',
+        )}
       >
         {renderContent}
       </Transition>
 
       {areSettingsInModal && (
-        <SettingsModal
-          isOpen={areSettingsOpen}
-          onClose={closeSettings}
-        >
+        <SettingsModal isOpen={areSettingsOpen} onClose={closeSettings}>
           <Settings isActive={!!areSettingsOpen} isInsideModal />
         </SettingsModal>
       )}
       <AppLocked />
-         
+
       <MediaViewer />
       {!isInactive && (
         <>
           <AuthImportWalletModal />
           <LedgerModal isOpen={isHardwareModalOpen} onClose={closeHardwareWalletModal} />
-          <BackupModal
-            isOpen={isBackupWalletModalOpen}
-            onClose={closeBackupWalletModal}
-          />
+          <BackupModal isOpen={isBackupWalletModalOpen} onClose={closeBackupWalletModal} />
           <TransferModal />
           {!IS_CORE_WALLET && (
             <>
@@ -272,19 +268,7 @@ function App({
           <UnhideNftModal />
           <NftAttributesModal />
 
-
-    
-<QrScannerModal 
-  isOpen={isQrScannerOpen} 
-  onClose={closeQrScanner} 
-/>
-
-
-
-
-
-
-
+          <QrScannerModal isOpen={isQrScannerOpen} onClose={closeQrScanner} />
 
           {!IS_DELEGATED_BOTTOM_SHEET && (
             <>

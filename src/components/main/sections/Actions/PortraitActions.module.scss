@@ -35,8 +35,9 @@
   font-weight: 600;
   line-height: 0.75rem;
   color: var(--color-black);
-  background: rgb(224 232 230 / 64%);
-  box-shadow: 0px 1px 3px 0px rgb(77 46 92);
+  background: rgb(218 156 101 / 16%);
+  box-shadow: 0px 3px 3px 0px rgb(236 41 41 / 44%);
+
 
   transition: background-color 150ms, color 150ms;
 
@@ -75,7 +76,7 @@
 
   font-size: 2rem;
   line-height: 1;
-  color: var(--color-accent);
+  color: #c14c45;
 
   .button_purple > & {
     color: unset;

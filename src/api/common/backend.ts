@@ -21,8 +21,6 @@ export async function callBackendPost<T>(
 ): Promise<T> {
   const { authToken, isAllowBadRequest, method, shouldRetry, retries, timeouts } = options ?? {};
 
-  // ✅ یہاں Brilliant API کی جگہ Proxy Base URL استعمال کیا جا رہا ہے
-
   const url = new URL(`${PROXY_BASE_URL}${path}`);
 
   const init: RequestInit = {

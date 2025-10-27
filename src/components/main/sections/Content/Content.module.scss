@@ -90,7 +90,7 @@
   .assetsPanel {
     width: 100%;
     max-width: v.$portraitContentMaxWidth;
-    margin: 0 auto 1rem;
+    margin: 0 auto 0.5rem;
   }
 
   .tabsContainer {
@@ -102,7 +102,8 @@
 
     width: 100%;
     height: 2.2rem;
-    background: #6991a91c;
+    background: rgb(255 163 251 / 38%);
+   
   }
 
   .tabsContent {
@@ -145,7 +146,7 @@
     overflow: hidden;
     flex: 1 1 auto;
     min-height: 0;
-    background: linear-gradient(61deg, #d497db59, #b38cd16b, #00000026);
+    background: linear-gradient(184deg, rgb(209 113 202 / 52%) 0%, #c06fe75c 0, #992a2a4f, #d380c1 100%);
   }
 }
 
@@ -157,7 +158,7 @@
   .tabs {
     padding: 0.625rem ;
     border-radius: var(--border-radius-default) var(--border-radius-default) 0 0;
-    background: linear-gradient(180deg, rgb(151 200 219 / 42%), rgb(229 161 196 / 19%), rgb(194 92 213 / 30%));  }
+    background: linear-gradient(180deg, rgba(153, 230, 134, 0.42), rgb(229 161 196 / 19%), rgba(175, 107, 187, 0.411));  }
 
   .tabsOverlay {
     top: 0.625rem;

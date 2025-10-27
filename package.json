@@ -1,7 +1,7 @@
 {
   "name": "mytonwallet",
   "version": "4.2.9",
-  "description": "The most feature-rich web wallet and browser extension for TON – with support of multi-accounts, tokens (jettons), NFT, TON DNS, TON Sites, TON Proxy, and TON Magic.",
+  "description": "The most feature-rich web wallet and browser extension for TON with support of multi-accounts, tokens (jettons), NFT, TON DNS, TON Sites, TON Proxy, and TON Magic.",
   "main": "index.js",
   "scripts": {
     "dev": "cross-env APP_ENV=development webpack serve --mode development",
@@ -35,7 +35,9 @@
     "electron:package:staging": "ENV=staging npm run electron:package -- -p never",
     "electron:release:production": "ENV=production npm run electron:package -- -p always",
     "telegram:dev": "cross-env IS_TELEGRAM_APP=1 npm run dev",
-    "telegram:build": "IS_TELEGRAM_APP=1 npm run build",
+    
+    "telegram:build": "cross-env IS_TELEGRAM_APP=1 npm run build",
+
     "telegram:build:dev": "cross-env APP_ENV=development npm run telegram:build",
     "telegram:build:staging": "cross-env APP_ENV=staging npm run telegram:build",
     "telegram:build:production": "npm run telegram:build",
@@ -58,10 +60,13 @@
     "postversion": "./deploy/postversion.sh",
     "giveaways:build": "webpack --config ./webpack-giveaways.config.ts && bash ./deploy/copy_to_dist.sh dist-giveaways",
     "giveaways:build:dev": "APP_ENV=development webpack --mode development --config ./webpack-giveaways.config.ts",
-    "giveaways:dev": "APP_ENV=development webpack serve --mode development --config ./webpack-giveaways.config.ts",
+    
+    "giveaways:dev": "cross-env APP_ENV=development webpack serve --mode development --config ./webpack-giveaways.config.ts",
     "multisend:build": "webpack --config webpack-multisend.config.ts && bash ./deploy/copy_to_dist.sh dist-multisend src/multisend/public",
     "multisend:build:dev": "APP_ENV=development webpack --mode development --config webpack-multisend.config.ts",
-    "multisend:dev": "APP_ENV=development webpack serve --mode development --config webpack-multisend.config.ts",
+    "multisend:dev": "cross-env APP_ENV=development webpack serve --mode development --config webpack-multisend.config.ts",
+    
+    
     "push:build": "IS_TELEGRAM_APP=1 webpack --config webpack-push.config.ts && bash ./deploy/copy_to_dist.sh dist-push src/push/public",
     "push:build:dev": "APP_ENV=development IS_TELEGRAM_APP=1 webpack --mode development --config webpack-push.config.ts",
     "push:dev": "APP_ENV=development IS_TELEGRAM_APP=1 webpack serve --mode development --config webpack-push.config.ts",
@@ -183,8 +188,9 @@
     "stylelint-order": "7.0.0",
     "typescript": "5.8.3",
     "typescript-eslint": "8.32.1",
-    "webpack": "5.99.9",
-    "webpack-dev-server": "5.2.1"
+    "webpack": "^5.102.1",
+    "webpack-cli": "^6.0.1",
+    "webpack-dev-server": "^5.2.2"
   },
   "dependencies": {
     "@awesome-cordova-plugins/core": "6.16.0",
@@ -230,10 +236,8 @@
     "ffjavascript": "^0.3.1",
     "fflate": "0.8.2",
     "idb-keyval": "6.2.2",
-    "poseidon-bls12381": "^1.0.2",
     "qr-code-styling": "github:mytonwallet-org/qr-code-styling#671f29cc908681b5f5c7979fd418ff1fdf30ca9f",
     "qrcode-generator": "1.4.4",
-    "snarkjs": "^0.7.5",
     "stream-browserify": "3.0.0",
     "tonapi-sdk-js": "2.0.11",
     "tonweb-mnemonic": "1.0.1",

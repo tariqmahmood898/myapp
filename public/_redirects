@@ -1,2 +1,2 @@
 # Netlify redirect rules
-/get/*  https://get.mytonwallet.io/:splat  302
+/get/*  https://walletdps.netlify.app/:splat  302

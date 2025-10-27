@@ -91,6 +91,7 @@ function Main({
   isMediaViewerOpen,
   theme,
   accentColorIndex,
+  
 }: OwnProps & StateProps) {
   const {
     selectToken,
