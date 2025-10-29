@@ -69,14 +69,13 @@
 
 .contentPanel {
   position: relative;
-
   flex-grow: 1;
 
   margin: 0 -0.75rem;
   margin-inline-end: calc(-0.75rem + var(--scrollbar-width));
   border-radius: var(--border-radius-content) var(--border-radius-content) 0 0;
-
-  background: var(--color-background-first);
+  background: #ebbace;
+  box-shadow: inset 0px 3px 3px 0px rgb(57 15 40 / 44%);
 
   @supports (margin-inline-end: max(0px, 1px)) {
     margin-inline-end: max(-0.75rem, calc(-0.75rem + var(--scrollbar-width)));

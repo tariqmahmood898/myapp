@@ -237,7 +237,7 @@ function DropPage({
                 isSmall
                 className={styles.importButton}
               >
-                Download CSV Sample
+                Download CSV Sample File
               </Button>
             </div>
             <input
@@ -271,7 +271,7 @@ function DropPage({
           </>
         ) : (
           <p>
-            Connect <b>MyTonWallet</b> to access<br />the multi-send feature.
+            Connect <b>dps wallet</b> to access<br />the multi-send feature.
           </p>
         )}
       </div>

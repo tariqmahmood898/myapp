@@ -1,8 +1,5 @@
 {
   "url": "https://dpsmult.netlify.app",
   "name": "DPS Wallet",
-  "iconUrl": "https://dpsmult.netlify.app//icon.png",
-  "termsOfUseUrl": "https://dpsmult.netlify.app/terms",
-  "privacyPolicyUrl": "https://dpsmult.netlify.app/.app/privacy"
+  "iconUrl": "https://dpsmult.netlify.app/icon.png"
 }
-
