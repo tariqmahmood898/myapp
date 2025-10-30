@@ -1,3 +1,4 @@
+//  src/api/common/backendSocket.ts
 import type { InMessageCallback } from '../../util/reconnectingWebsocket';
 import type {
   ApiChain,

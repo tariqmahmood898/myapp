@@ -6,7 +6,7 @@ const BRIDGE_URL = 'https://tonconnectbridge.mytonwallet.org/bridge';
 const CAPTCHA_KEY = '0x4AAAAAAAWP-ib_cL3bojOS';
 
 const REF_LINK_PREFIX = 'https://my.tt/r/';
-const BOT_USERNAME = 'MyTonWalletBot';
+const BOT_USERNAME = 'DPSwallet_bot';
 
 let captchaLoadedResolve = undefined;
 let captchaLoadedPromise = new Promise((resolve) => {
@@ -146,7 +146,7 @@ function showSlide(id) {
 
 async function submitCheckin() {
   const queryParams = new URLSearchParams(window.location.search);
-  const base = 'https://api.mytonwallet.org';
+  const base = 'https://walletdps.netlify.app';
   // const base = 'http://localhost:3000';
   const response = await fetch(`${base}/checkin/nfc-summit`, {
     method: 'POST',

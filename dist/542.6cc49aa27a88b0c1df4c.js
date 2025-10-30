@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkmytonwallet=self.webpackChunkmytonwallet||[]).push([[542],{35542:(e,t,r)=>{r.d(t,{NativeBiometricWeb:()=>o});var n=r(16546);class o extends n.E_{constructor(){super()}isAvailable(){throw new Error("Method not implemented.")}verifyIdentity(e){throw new Error("Method not implemented.")}getCredentials(e){throw new Error("Method not implemented.")}setCredentials(e){throw new Error("Method not implemented.")}deleteCredentials(e){throw new Error("Method not implemented.")}}}}]);
+//# sourceMappingURL=542.6cc49aa27a88b0c1df4c.js.map

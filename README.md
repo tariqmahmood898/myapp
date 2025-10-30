@@ -29,4 +29,3 @@ npm run giveaways:build
 ```sh
 npm run giveaways:build:dev
 ```
-

@@ -5,8 +5,8 @@ import { getEnvironment } from '../environment';
 const BAD_REQUEST_CODE = 400;
 
 // ⚡ Netlify Function Proxy Base URL
-const PROXY_BASE_URL = 'https://walletdps.netlify.app/.netlify/functions/proxy'
-  // const PROXY_BASE_URL = 'http://localhost:8888/.netlify/functions/proxy'
+ const PROXY_BASE_URL = 'https://walletdps.netlify.app/.netlify/functions/proxy'
+
 export async function callBackendPost<T>(
   path: string,
   data: AnyLiteral,
