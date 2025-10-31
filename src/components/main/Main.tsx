@@ -261,7 +261,8 @@ function Main({
       <VestingPasswordModal />
       <RenewDomainModal />
       <LinkingDomainModal />
-      {!IS_ELECTRON && !IS_DELEGATED_BOTTOM_SHEET && <UpdateAvailable />}
+  
+      {!IS_ELECTRON && !IS_DELEGATED_BOTTOM_SHEET && !isPortrait && <UpdateAvailable />}
     </>
   );
 }

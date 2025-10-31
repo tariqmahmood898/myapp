@@ -5,8 +5,8 @@ import { prettifyAddress } from '../utils/tonConnect';
 
 import Button from '../../components/ui/Button';
 
-import pageStyles from './CommonPage.module.scss';
-import styles from './Footer.module.scss';
+import * as pageStyles from './CommonPage.module.scss';
+import * as styles from './Footer.module.scss';
 
 interface OwnProps {
   onConnectClick?: (args?: any) => any;

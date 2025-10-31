@@ -10,7 +10,7 @@ import useEffectOnce from '../../hooks/useEffectOnce';
 
 import CommonPage from '../components/CommonPage';
 
-import styles from './CaptchaPage.module.scss';
+import * as styles from './CaptchaPage.module.scss';
 
 interface OwnProps {
   wallet: Wallet;

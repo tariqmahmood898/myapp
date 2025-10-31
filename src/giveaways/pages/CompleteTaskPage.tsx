@@ -8,7 +8,7 @@ import useInterval from '../../hooks/useInterval';
 
 import CommonPage from '../components/CommonPage';
 
-import styles from './CompleteTaskPage.module.scss';
+import * as styles from './CompleteTaskPage.module.scss';
 
 const FETCH_INTERVAL_MS = 5000;
 

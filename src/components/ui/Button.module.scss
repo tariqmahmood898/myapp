@@ -4,7 +4,14 @@
 
 .button {
   cursor: var(--custom-cursor, pointer);
-  user-select: none;
+  -webkit-user-select: none;
+    /* Safari fix */
+    -moz-user-select: none;
+    /* Firefox old versions */
+    -ms-user-select: none;
+    /* IE10+ */
+    user-select: none;
+    /* Standard property */
 
   border: 0;
   border-radius: 0;

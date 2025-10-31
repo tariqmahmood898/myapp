@@ -29,7 +29,7 @@ import CompleteTaskPage from '../pages/CompleteTaskPage';
 import ConnectPage from '../pages/ConnectPage';
 import GiveawayInfoPage from '../pages/GiveawayInfoPage';
 
-import styles from './App.module.scss';
+import * as styles from './App.module.scss';
 
 interface OwnProps {
   mtwWalletInfo: WalletInfoRemote;

@@ -15,7 +15,7 @@ import {
 
 import CalendarIcon, { CalendarIconState } from './CalendarIcon';
 
-import styles from './GiveawayInfo.module.scss';
+import * as styles from './GiveawayInfo.module.scss';
 
 interface OwnProps {
   giveaway: Giveaway;

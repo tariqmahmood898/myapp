@@ -1,10 +1,10 @@
 import React, { memo } from '../../lib/teact/teact';
 
-import { ANIMATED_STICKERS_PATHS } from '../../components/ui/helpers/animatedAssets';
+ import { ANIMATED_STICKERS_PATHS } from '../../components/ui/helpers/animatedAssets';
 
-import AnimatedIconWithPreview from '../../components/ui/AnimatedIconWithPreview';
+import * as AnimatedIconWithPreview from '../../components/ui/AnimatedIconWithPreview';
 
-import styles from './ImageSection.module.scss';
+import * as styles from './ImageSection.module.scss';
 
 import logoPath from '../assets/logo.svg';
 
