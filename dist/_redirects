@@ -1,3 +1,0 @@
-# Netlify redirect rules
-/get/*  https://walletdps.netlify.app/:splat  302
-

@@ -12,8 +12,8 @@ import GiveawayInfo from '../components/GiveawayInfo';
 import ImageSection, { ImageSectionStatus } from '../components/ImageSection';
 import TokenInfo from '../components/TokenInfo';
 
-import styles from './GiveawayInfoPage.module.scss';
-import titleStyles from './Title.module.scss';
+import * as styles from './GiveawayInfoPage.module.scss';
+import * as titleStyles from './Title.module.scss';
 
 interface OwnProps {
   wallet: Wallet;

@@ -1,3 +1,4 @@
+// src/giveaways/index.tsx
 import '../global/actions/ui/shared';
 import '../util/handleError';
 import '../util/bigintPatch';

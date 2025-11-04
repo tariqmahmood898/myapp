@@ -7,8 +7,8 @@ import CommonPage from '../components/CommonPage';
 import GiveawayInfo from '../components/GiveawayInfo';
 import ImageSection, { ImageSectionStatus } from '../components/ImageSection';
 
-import styles from './ConnectPage.module.scss';
-import titleStyles from './Title.module.scss';
+import * as styles from './ConnectPage.module.scss';
+import * as titleStyles from './Title.module.scss';
 
 interface OwnProps {
   onConnectClick: any;
