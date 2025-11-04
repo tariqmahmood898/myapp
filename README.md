@@ -12,6 +12,9 @@ http://t.me/DPSwallet_bot/?startapp
 - 🤖 Telegram channel
  👉 https://t.me/dps_wallets
 
+- 🎁 giveaway link 
+ https://giveaways.netlify.app
+
 - 💎 If you need help contact us.
  http://t.me/zyflex
 
@@ -19,8 +22,10 @@ http://t.me/DPSwallet_bot/?startapp
 
 ## 💰 MyTonWallet Giveaways
 
-User Interface for the MTW Giveaways App
+User Interface for the DPS wallet Giveaways APP. This app will help the user complete their task.
 
+
+.
 
 
 ## Environment Setup
