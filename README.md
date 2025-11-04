@@ -4,20 +4,21 @@ The wallet is **self-custodial and safe**. The developers **do not** have access
 
 
 - 🪩 Web App browser links
-🌐 https://walletdps.netlify.app
 
--  🤖 wallet bot 
+👉 https://walletdps.netlify.app
+
+-  🤖 Telegram wallet bot 
 http://t.me/DPSwallet_bot/?startapp
 
-- 👉 wallet bot channel
-🪩 https://t.me/dps_wallets
+- 🤖 Telegram channel
+ 👉 https://t.me/dps_wallets
 
 - 💎 If you need help contact us.
  http://t.me/zyflex
 
 
 
-## MyTonWallet Giveaways
+## 💰 MyTonWallet Giveaways
 
 User Interface for the MTW Giveaways App
 
