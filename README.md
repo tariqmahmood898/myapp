@@ -31,7 +31,7 @@ npm run dev
 **for developing outputbdist
 
 ```
-**npm run build***
+**npm run build**
 ```
 
 
