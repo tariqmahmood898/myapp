@@ -19,14 +19,23 @@ http://t.me/DPSwallet_bot/?startapp
  http://t.me/zyflex
 
 
-**Environment Setup**
+- **Environment Setup**
 To run the app, you need to define the following variables in the `.env` file:
 
 
-_local development_
+_local development commands_
 ```
 npm run dev 
 ```
+
+**for developing outputbdist
+
+```
+**npm run build***
+```
+
+
+
 
 - 💰 **MyTonWallet Giveaway**
 
