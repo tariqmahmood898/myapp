@@ -4,7 +4,6 @@ The wallet is **self-custodial and safe**. The developers **do not** have access
 
 
 - 🪩 Web App browser links
-
 👉 https://walletdps.netlify.app
 
 -  🤖 Telegram wallet bot 
@@ -21,6 +20,8 @@ http://t.me/DPSwallet_bot/?startapp
 ## 💰 MyTonWallet Giveaways
 
 User Interface for the MTW Giveaways App
+
+
 
 ## Environment Setup
 
