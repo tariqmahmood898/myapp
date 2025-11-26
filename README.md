@@ -4,7 +4,7 @@ The wallet is **self-custodial and safe**. The developers **do not** have access
 
 
 - **🪩 Web App browser links**
-👉 https://walletdps.netlify.app
+👉 https://walletweb-delta.vercel.app
 
 -  **🤖 Telegram wallet bot**
 http://t.me/DPSwallet_bot/?startapp
